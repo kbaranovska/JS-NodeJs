@@ -30,6 +30,14 @@ app.get('/medicals/:id', function(req, res){
     
     var medical = getMedicalById(id, medicals);
 
+    if(medical === undefined){
+        res.render('error',
+            { id: id }
+        );
+
+        return;
+    }
+
     res.render('medicalInfo',
         {   name: medical.name,
             brand: medical.brand,
